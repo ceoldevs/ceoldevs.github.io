@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/common/Nav.astro'
+import Footer from '../components/common/Footer.astro';
+
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects')
+---
+
+<BaseLayout>
+    <main class="font-sans bg-[#0a2144] min-h-screen text-[#95FF8C]">
+		<Nav color="#95FF8C"/>
+		<article class="min-h-[90vh] pt-20 px-6 flex flex-col gap-14">
+                <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-20 sm:gap-y-8 gap-y-1">
+                    {projects.map(project => (
+                        <a href={`/project/${project.slug}`} class="flex flex-col pt-10 gap-x-20">
+                            <img class="" src={project.data.image} alt={project.data.imageAlt} transition:name={project.data.imageAlt}>
+                            <h1 class="my-4 lpt-lg:text-2xl lpt:text-xl tbl:text-2xl text-lg font-semibold" transition:name={`${project.data.imageAlt}-title`}>{project.data.title}</h1>
+                        </a>
+                    ))}
+                </div>
+		</article>
+        <Footer />
+    </main>
+</BaseLayout>

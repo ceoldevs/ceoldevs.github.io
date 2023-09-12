@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/common/Nav.astro'
+import Footer from '../components/common/Footer.astro'
+
+import {getCollection} from 'astro:content';
+
+const meetups = await getCollection('meetups')
+
+// console.log(meetups)
+// meetups.filter
+
+const sortedMeetups = meetups.sort((a,b) => {
+    let c = new Date(a.data.date)
+    let d = new Date(b.data.date)
+
+    return c<d ? 1 : -1;
+});
+
+let featured = sortedMeetups[0]
+---
+
+<BaseLayout>
+    <main class="font-sans bg-[#F9FAFA] min-h-screen text-[#17191C]">
+		<Nav color="#17191c"/>
+		<article class="min-h-[90vh] pt-28 px-6 flex flex-col gap-14">
+            <div>
+                <div class="lpt:block hidden">
+                    <div class="flex justify-between">
+                        <h1 class="text-3xl">Featured</h1>
+                    </div>
+                    <hr class="mt-4"/>
+                    <div class="flex justify-between items-center mt-10 gap-x-20 lpt-lg:px-16 px-8 py-20 bg-[#F0F6F3]">
+                        <div class="flex flex-col">
+                            <div class="flex flex-wrap">
+                                <span class="flex-1 text-pink-600 font-semibold">#{featured.data.tags![0]}</span>
+                                <span class="border-b-2 border-dashed border-[#17191c]/40 hover:border-[#17191c] transition-all duration-500 cursor-pointer">{featured.data.date.toLocaleString()}</span>
+                            </div>
+                            <h1 class="my-4 lpt-lg:text-6xl text-4xl font-semibold items-center">{featured.data.title}</h1>
+                            <div class="mt-4 flex gap-4">
+                                <a class="px-6 py-4 text-[#A66380] border-[#A66380] border-2 hover:bg-[#A66380] hover:text-[#F9FFF2]" 
+                                    href={`/meetup/${featured.slug}`} >
+                                    View Event
+                                </a>
+                            </div>
+                        </div>
+                        <img class="lpt-lg:w-80 lpt:w-60" src={featured.data.image} alt={featured.data.imageAlt}>
+                    </div>
+                    <hr class="mt-6"/>
+                </div>
+
+                <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-20 sm:gap-y-8 gap-y-1">
+                    {sortedMeetups.map(meetup => (
+                        <a href={`/meetup/${meetup.slug}`} class="flex flex-col pt-10 gap-x-20">
+                            <img transition:name={`meetup-${meetup.data.imageAlt}-image`} src={meetup.data.image} alt={meetup.data.imageAlt} />
+                            <h1 transition:name={`meetup-${meetup.data.imageAlt}-title`} class="my-4 lpt-lg:text-2xl lpt:text-xl tbl:text-2xl text-lg font-semibold">{meetup.data.title}</h1>
+                        </a>
+                    ))}
+                </div>
+            </div>
+        </article>
+        <Footer/>
+    </main>
+</BaseLayout>

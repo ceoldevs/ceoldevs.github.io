@@ -1,0 +1,41 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/common/Nav.astro'
+import Footer from '../../components/common/Footer.astro';
+
+export async function getStaticPaths() {
+  const meetups = await getCollection('meetups');
+  return meetups.map((meetup) => ({
+    params: { slug: meetup.slug },
+    props: meetup,
+  }));
+}
+
+type Props = CollectionEntry<'meetups'>;
+const meetup = Astro.props;
+const { Content } = await meetup.render();
+---
+
+<BaseLayout>
+    <main class="font-sans bg-[#F9FAFA] min-h-screen text-[#17191C]">
+      <Nav color="#17191c"/>
+      <article class="min-h-[90vh] pt-20 px-6 flex flex-col gap-10">
+        <div class="flex sm:flex-row flex-col-reverse gap-10 items-center justify-between pt-14">
+          <h1  transition:name={`meetup-${meetup.data.imageAlt}-title`} class="lg:text-6xl sm:text-4xl text-2xl font-semibold sm:text-left">{meetup.data.title}</h1>
+          <div class="sm:text-lg text-base flex justify-end">
+            <img transition:name={`meetup-${meetup.data.imageAlt}-image`} src={meetup.data.image} alt={meetup.data.imageAlt} />
+          </div>
+        </div>
+        {meetup.data.date < (new Date()) && 
+        <div class="bg-yellow-50 text-yellow-800 p-4 rounded-lg border border-yellow-200">This event already ended</div>
+        }
+        <div class="prose break-words">
+          <Content />
+        </div>
+      </article>
+      <Footer />
+    </main>
+</BaseLayout>
+

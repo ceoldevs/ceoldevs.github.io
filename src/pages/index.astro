@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro'
+import Nav from '../components/common/Nav.astro'
+import Footer from '../components/common/Footer.astro'
+---
+
+<BaseLayout>
+    <main class="font-sans min-h-screen bg-[#17191C] text-white">
+		<Nav color="#F9FAFA"/>
+		<article class="min-h-[90vh] sm:px-10 px-6">
+			<div class="flex flex-col gap-10 justify-center h-[80vh] items-center pt-16">
+				<div class="flex flex-row gap-10 w-full overflow-hidden whitespace-nowrap text-[#0066FF] scrolling_text">
+					<div class="flex flex-row gap-10 lg:text-3xl sm:text-2xl text-xl font-bold text">
+						<span>Code. Evaluate. Optimize. Learn.</span>
+						<span>Code. Evaluate. Optimize. Learn.</span>
+						<span>Code. Evaluate. Optimize. Learn.</span>
+						<span>Code. Evaluate. Optimize. Learn.</span>
+					</div>
+					<div class="flex flex-row gap-10 lg:text-3xl sm:text-2xl text-xl font-bold text">
+						<span>Code. Evaluate. Optimize. Learn.</span>
+						<span>Code. Evaluate. Optimize. Learn.</span>
+						<span>Code. Evaluate. Optimize. Learn.</span>
+						<span>Code. Evaluate. Optimize. Learn.</span>
+					</div>
+				</div>
+				<h1 class="lg:text-7xl sm:text-5xl text-4xl font-bold ">Creating working solutions for unsolved, underexplored problems</h1>
+				<div class="mt-16 flex mbl-lg:flex-row flex-col justify-start w-max font-semibold">
+					<a class="flex items-center gap-2 px-6 py-4 border-[#0066FF] border-2 hover:bg-[#0066FF] hover:text-white" href="/meetups">
+						View Projects
+					</a>
+					<a class="flex items-center gap-2 px-6 py-4" rel="noreferrer" target="_blank" href="https://discord.gg/Rr7dZHcdey">
+						Join our Discord <span class="material-symbols-rounded">arrow_outward</span>
+					</a>
+				</div>
+			</div>
+		</article>
+		<Footer/>
+    </main>
+</BaseLayout>
+
+
+<style>
+	@keyframes animate_text {
+		from {
+		transform: translate3d(0, 0, 0);
+		}
+		to {
+		transform: translate3d(-100%, 0, 0);
+		}
+	}
+
+	.text {
+		animation: animate_text 30s linear infinite; /* The animation property */
+	}
+</style>

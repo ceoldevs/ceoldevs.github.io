@@ -1,0 +1,42 @@
+---
+import Logo from './Logo.astro'
+const {color} = Astro.props;
+
+const links = [
+    // {name: "Blogs", link: "/blogs"},
+    {name: "Meetups", link: "/meetups"},
+    {name: "Projects", link: "/projects"},
+    {name: "Community", link: "/community"},
+    {name: "About", link: "/about"},
+]
+---
+
+<nav class="z-[1000] flex justify-between items-center sm:px-6 px-6 py-4 fixed w-screen bg-inherit">
+    <div>
+        <a href="/" aria-label="CEOL Home">
+            <Logo color={color}/>
+        </a>
+    </div>
+    <div class="lpt:flex gap-4 hidden font-semibold">
+        {links.map(item => (
+            <a href={item.link}>{item.name}</a>
+        ))}
+    </div>
+    <div class="z-[2] lpt:hidden flex bg-inherit">
+        <label for="menu" class="bg-inherit">
+            <span class="font-semibold">Menu</span>
+            <input type="checkbox" class="peer hidden" id="menu">
+                <div class="bg-inherit peer-checked:flex hidden fixed w-full h-full right-0 px-4 pt-20 flex-col gap-4">
+                    <hr class="mix-blend-difference"/>
+                    {links.map(item => (
+                        <a href={item.link} class="text-xl flex justify-between">
+                            <span >{item.name}</span>
+                            <span class="material-symbols-rounded">arrow_outward</span>
+                        </a>
+                        <hr class="mix-blend-difference"/>
+                    ))}
+                </div>
+
+        </label>
+    </div>
+</nav>

@@ -1,0 +1,41 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Nav from '../../components/common/Nav.astro'
+import Footer from '../../components/common/Footer.astro';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: project,
+  }));
+}
+
+type Props = CollectionEntry<'projects'>;
+const project = Astro.props;
+const { Content } = await project.render();
+---
+
+<BaseLayout>
+    <main class="font-sans bg-[#F9FAFA] min-h-screen text-[#17191C]">
+      <Nav color="#17191c"/>
+      <article class="sm:px-10 px-6 pt-20">
+        <div class="mt-20 mb-24">
+            <!-- <h1 class="my-4 lpt-lg:text-6xl text-4xl font-semibold items-center"  transition:name={`${project.data.imageAlt}-title`}>{project.data.title}</h1>
+            <img class="w-[40rem]" src={project.data.image} alt={project.data.imageAlt} transition:name={project.data.imageAlt}> -->
+            <h1 class="mb-14 lpt-lg:text-5xl text-4xl font-semibold items-center"  transition:name={`${project.data.imageAlt}-title`}>{project.data.title}</h1>
+            <div class="font-semibold text-pink-600">
+              #{project.data.tags[0]}
+            </div>
+            <!-- <img class="w-[40rem]" src={project.data.image} alt={project.data.imageAlt} transition:name={project.data.imageAlt}> -->
+        </div>
+        <div class="prose lg:ml-40 sm:prose-base prose-sm prose-headings:font-semibold">
+          <Content />
+        </div>
+      </article>
+      <Footer />
+    </main>
+</BaseLayout>
+

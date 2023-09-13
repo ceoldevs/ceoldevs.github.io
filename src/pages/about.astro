@@ -7,26 +7,31 @@ import Footer from '../components/common/Footer.astro';
 <BaseLayout>
     <main class="font-sans bg-[#C5FCF6] min-h-screen text-[#C43B4B]">
 		<Nav color="#c43b4b"/>
-		<article class="pt-20 px-6 flex flex-col sm:gap-14 gap-5 min-h-[90vh]">
-            <div class="flex lpt-lg:flex-row flex-col gap-10 justify-between pt-14">
-                <h1 class="flex-[8] text-[#c43b4b] sm:text-7xl text-5xl font-semibold">Emerging Innovation Collective</h1>
-                <div class="flex-[14] sm:text-lg text-base flex flex-col justify-between">
-                    <div>
-                        <p> We aim to create an Innovation Collective that provides solutions to problems that are unsolved being under-explored. We operate over a vast landscape in computer science and information technology and provide solutions in these.  </p>
-                        <p> By uniting individuals of similar thought with varying perspectives, we would like to create a community that works.  </p>
-                    </div>
-                    <div class="mt-8 flex mbl-lg:flex-row flex-col w-max">
-                        <a class="flex items-center gap-2 px-6 py-4 border-[#c43b4b] border-2 hover:bg-[#c43b4b] hover:text-[#c5fcf6]" rel="noreferrer" target="_blank" href="https://github.com/ceoldevs">
-                            Start Contributing <span class="material-symbols-rounded">arrow_outward</span>
-                        </a>
-                        <a class="px-6 py-4" href="#">
-                            Support us
-                        </a>
-                    </div>
+		<article class="sm:pt-40 pt-24 px-6 flex flex-col sm:gap-14 gap-5 min-h-[90vh]">
+            <h1 class="flex-[8] text-[#c43b4b] sm:text-7xl text-5xl font-semibold">Emerging Innovation Collective</h1>
+            <div class="flex-[14] sm:text-lg text-base flex flex-col justify-between">
+                <div class="prose text-inherit">
+                    <p> We aim to create an Innovation Collective that provides solutions to problems that are unsolved being under-explored. We operate over a vast landscape in computer science and information technology and provide solutions in these.  </p>
+                    <p> By uniting individuals of similar thought with varying perspectives, we would like to create a community that works.  </p>
+                </div>
+                <div class="mt-8 flex mbl-lg:flex-row flex-col w-max">
+                    <a class="flex items-center gap-2 px-6 py-4 border-[#c43b4b] border-2 hover:bg-[#c43b4b] hover:text-[#c5fcf6]" rel="noreferrer" target="_blank"  href="https://discord.gg/Rr7dZHcdey">
+                        Join Our Discord <span class="material-symbols-rounded">arrow_outward</span>
+                    </a>
+                        <a class="flex items-center gap-2 px-6 py-4" rel="noreferrer" target="_blank" href="https://github.com/ceoldevs">
+                        GitHub<span class="material-symbols-rounded">arrow_outward</span>
+                    </a>
                 </div>
             </div>
+            <hr class="border-[#c43b4b]/50">
+            <h2 class="mt-6 flex-[8] text-[#c43b4b] sm:text-5xl text-3xl font-semibold">
+                Why Discord?
+            </h2>
+            <div class="text-lg">
+                We have chosen Discord to be our primary medium of community interactions and announcements with it's features of multiple text channels, Voice chats, Event stages and powerful tools for moderation of content to keep the community user friendly and powerful integrations.
+            </div>
             <div>
-                <img src="/assets/about-group-desk.png" alt="group discussing on desk" class="w-full sm:h-[34rem] h-60 object-cover">
+                <img src="/assets/about-group-desk.png" alt="group discussing on desk" class="w-full lg:h-[45rem] sm:h-[34rem] h-60 object-cover">
             </div>
 		</article>
         <Footer />

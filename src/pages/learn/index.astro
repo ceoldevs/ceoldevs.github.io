@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import Nav from '../../components/common/Nav.astro'
+import Footer from '../../components/common/Footer.astro'
+---
+
+<BaseLayout>
+    <main class="font-sans bg-[#D7EFFE] text-black">
+		<Nav color="#000000"/>
+		<article class="min-h-[90vh] sm:px-10 px-6 pt-40 flex flex-col gap-32">
+            <section class="flex lpt-lg:flex-row flex-col gap-x-20 gap-y-10">
+                <h1 class="font-bold text-5xl lpt-lg:leading-normal leading-tight tracking-wide flex-1">Cracking your next Interview with our DSA Program</h1>
+                <div class="flex flex-col gap-6 flex-1 text-lg">
+                    <p>
+                        Join us on a journey in learning DSA and practicing competitive programming by solving and understanding leetcode problems and with our weekend physical sessions where you can solve problems together with your peers and time your problems 
+                    </p>
+                    <div class="flex sm:flex-row flex-col">
+                        <a href="/learn/dsa" class="sm:w-max px-6 py-4 border-2 border-black hover:bg-black hover:text-[#D7EFFE] transition-colors">View more</a>
+                        <a href="#" class="sm:w-max px-6 py-4 flex items-center gap-2">Join Discord Channel <span class="material-symbols-rounded">arrow_outward</span></a>
+                    </div>
+                </div>
+            </section>
+            <section class="flex lpt-lg:flex-row flex-col-reverse gap-x-20 gap-y-10">
+                <div class="flex flex-col gap-6 flex-1 text-lg">
+                    <p>
+                        Everything can be intimidating when you start a new thing. But dont worry as we are here with you to provide roadmaps to 
+                    </p>
+                    <div class="flex sm:flex-row flex-col">
+                        <a href="./roadmaps" class="sm:w-max px-6 py-4 border-2 border-black hover:bg-black hover:text-[#D7EFFE] transition-colors">Discover my paths</a>
+                        <!-- <a href="#" class="sm:w-max px-6 py-4 flex items-center gap-2">Join Discord Channel <span class="material-symbols-rounded">arrow_outward</span></a> -->
+                    </div>
+                </div>
+                <h1 class="font-bold text-5xl lpt-lg:leading-normal leading-tight tracking-wide flex-1">Troubled to know what is the right path for you? Checkout our Roadmaps</h1>
+            </section>
+		</article>
+		<Footer/>
+    </main>
+</BaseLayout>

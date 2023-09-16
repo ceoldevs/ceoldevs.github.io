@@ -1,0 +1,30 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content';
+
+import ContentLayout from '../../../layouts/ContentLayout.astro';
+
+export async function getStaticPaths() {
+  const learning = await getCollection('learning');
+  return learning.map((item) => ({
+    params: { slug: item.slug },
+    props: item,
+  }));
+}
+
+type Props = CollectionEntry<'meetups'>;
+const learn = Astro.props;
+const { Content } = await learn.render();
+---
+
+<ContentLayout>
+        <div class="flex sm:flex-row flex-col-reverse gap-10 items-center justify-between pt-14">
+          <h1 class="flex-[3] lg:text-6xl sm:text-4xl text-2xl font-semibold sm:text-left" transition:name={`learn-${learn.data.imageAlt}-title`}>{learn.data.title}</h1>
+          <div class="flex-[1] sm:text-lg text-base flex justify-end">
+            <img class="" transition:name={`learn-${learn.data.imageAlt}-image`} src={learn.data.image} alt={learn.data.imageAlt} />
+          </div>
+        </div>
+        <div class="lpt-lg:ml-32 ml-0 prose prose-lg max-w-3xl break-words">
+          <Content />
+        </div>
+</ContentLayout>
+

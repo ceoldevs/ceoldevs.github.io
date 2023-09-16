@@ -1,0 +1,9 @@
+---
+import { YouTube } from '@astro-community/astro-embed-youtube';
+
+const {id} = Astro.props;
+---
+
+<div class="[&>*]:rounded-2xl overflow-hidden">
+    <YouTube {id} />
+</div>

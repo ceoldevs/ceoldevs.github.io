@@ -5,6 +5,7 @@ const {color} = Astro.props;
 const links = [
     // {name: "Blogs", link: "/blogs"},
     {name: "Meetups", link: "/meetups"},
+    {name: "Learn", link: "/learn"},
     {name: "Projects", link: "/projects"},
     // {name: "Community", link: "/community"},
     {name: "About", link: "/about"},
@@ -17,7 +18,7 @@ const links = [
             <Logo color={color}/>
         </a>
     </div>
-    <div class="lpt:flex gap-4 hidden font-semibold">
+    <div class="lpt:flex gap-4 hidden font-semibold mr-4">
         {links.map(item => (
             <a href={item.link}>{item.name}</a>
         ))}

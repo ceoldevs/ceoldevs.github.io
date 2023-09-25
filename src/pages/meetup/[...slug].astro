@@ -16,11 +16,11 @@ const meetup = Astro.props;
 const { Content } = await meetup.render();
 ---
 
-<ContentLayout>
+<ContentLayout title={meetup.data.title} description={`Meetups by ceol`} imageUrl={meetup.data.image}>
   <div class="flex sm:flex-row flex-col-reverse gap-10 items-center justify-between pt-14">
     <h1 class="flex-[2] lg:text-6xl sm:text-4xl text-2xl font-semibold sm:text-left" transition:name={`meetup-${meetup.data.imageAlt}-title`}>{meetup.data.title}</h1>
     <div class="flex-[1] sm:text-lg text-base flex justify-end">
-      <img transition:name={`meetup-${meetup.data.imageAlt}-image`} src={meetup.data.image} alt={meetup.data.imageAlt} />
+      <img class="rounded-lg" transition:name={`meetup-${meetup.data.imageAlt}-image`} src={meetup.data.image} alt={meetup.data.imageAlt} />
     </div>
   </div>
   {meetup.data.date < (new Date()) && 

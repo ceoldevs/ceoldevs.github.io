@@ -52,7 +52,7 @@ let featured = sortedMeetups[0]
                 <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-20 sm:gap-y-8 gap-y-1">
                     {sortedMeetups.map(meetup => (
                         <a href={`/meetup/${meetup.slug}`} class="flex flex-col pt-10 gap-x-20">
-                            <img transition:name={`meetup-${meetup.data.imageAlt}-image`} src={meetup.data.image} alt={meetup.data.imageAlt} />
+                            <img class="roudned-lg" transition:name={`meetup-${meetup.data.imageAlt}-image`} src={meetup.data.image} alt={meetup.data.imageAlt} />
                             <h1 transition:name={`meetup-${meetup.data.imageAlt}-title`} class="my-4 lpt-lg:text-2xl lpt:text-xl tbl:text-2xl text-lg font-semibold">{meetup.data.title}</h1>
                         </a>
                     ))}

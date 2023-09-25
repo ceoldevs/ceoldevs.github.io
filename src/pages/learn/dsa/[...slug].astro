@@ -1,5 +1,5 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
+import { type CollectionEntry, getCollection, getEntry } from 'astro:content';
 
 import ContentLayout from '../../../layouts/ContentLayout.astro';
 
@@ -11,19 +11,32 @@ export async function getStaticPaths() {
   }));
 }
 
-type Props = CollectionEntry<'meetups'>;
+type Props = CollectionEntry<'learning'>;
 const learn = Astro.props;
+const author = await getEntry('authors', learn.data.author)
+console.log(learn)
 const { Content } = await learn.render();
 ---
 
-<ContentLayout>
+<ContentLayout title={learn.data.title} description={`DSA sessions by ceol - ${author.data.name}`} imageUrl={learn.data.image}>
         <div class="flex sm:flex-row flex-col-reverse gap-10 items-center justify-between pt-14">
           <h1 class="flex-[3] lg:text-6xl sm:text-4xl text-2xl font-semibold sm:text-left" transition:name={`learn-${learn.data.imageAlt}-title`}>{learn.data.title}</h1>
           <div class="flex-[1] sm:text-lg text-base flex justify-end">
-            <img class="" transition:name={`learn-${learn.data.imageAlt}-image`} src={learn.data.image} alt={learn.data.imageAlt} />
+            <img class="rounded-lg" transition:name={`learn-${learn.data.imageAlt}-image`} src={learn.data.image} alt={learn.data.imageAlt} />
           </div>
         </div>
-        <div class="lpt-lg:ml-32 ml-0 prose prose-lg max-w-3xl break-words">
+        <div class="lpt:flex-row flex-col flex-wrap text-black flex lpt:items-center justify-between gap-x-10 gap-y-4 max-w-4xl">
+          <span>{learn.data.date.toLocaleString("en-IN", {weekday: "long", year: "numeric", month: "long", day: "numeric"})}</span>
+          <span class="flex items-center">
+            <a target="_blank" rel="noreferrer" class="underline" href={author.data.portfolio}>{author.data.name}</a> <span class="material-symbols-rounded">arrow_outward</span>
+          </span>
+          <span class="flex gap-1 flex-wrap">
+            {learn.data.tags.map((tag:string) => (
+              <span class="text-pink-600">#{tag}</span>
+            ))}
+          </span>
+        </div>
+        <div class="lpt-lg:ml-36 ml-0 prose prose-lg max-w-3xl break-words">
           <Content />
         </div>
 </ContentLayout>

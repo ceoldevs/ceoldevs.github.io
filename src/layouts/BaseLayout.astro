@@ -3,14 +3,14 @@ import '@fontsource/sora';
 
 import BaseHead from '../components/common/BaseHead.astro'
 
-const { title, color } = Astro.props
+const { title, description, imageUrl } = Astro.props
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <BaseHead title={title}/>
+    <BaseHead {title} {description} {imageUrl}/>
   </head>
   <body>
       <slot /> <!-- your content is injected here -->

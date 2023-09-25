@@ -7,11 +7,13 @@ import {getCollection, getEntry} from 'astro:content';
 
 const learning = await getCollection('learning')
 
-// async function getAuthors(name: string) {
-// 	return (await getEntry('authors', name))
-// }
 
 let dsa = await learning.filter(learn => (learn.data.category === "dsa"))
+dsa = await Promise.all(dsa.map(async item => {
+	let authors = await getEntry('authors', item.data.author)
+	let data = {...item.data, authors}
+	return {...item, data}
+}))
 ---
 
 <BaseLayout>
@@ -21,10 +23,10 @@ let dsa = await learning.filter(learn => (learn.data.category === "dsa"))
 			<div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-x-20 sm:gap-y-8 gap-y-1">
 				{dsa.map(item => (
 					<a href={`/learn/dsa/${item.slug}`} class="flex flex-col pt-10 gap-x-20">
-						<img class="" src={item.data.image} alt={item.data.imageAlt} transition:name={`learn-${item.data.imageAlt}-image`}>
+						<img class="rounded-lg" src={item.data.image} alt={item.data.imageAlt} transition:name={`learn-${item.data.imageAlt}-image`}>
 						<h1 class="my-4 lpt-lg:text-2xl lpt:text-xl tbl:text-2xl text-lg font-semibold" transition:name={`learn-${item.data.imageAlt}-title`}>{item.data.title}</h1>
-						<div>
-							<div>{}</div>
+						<div class="flex justify-between">
+							<div>{item.data.authors!.data.name}</div> <div>{item.data.date.toLocaleString("en-IN", {weekday: "long", year: "numeric", month: "long", day: "numeric"})}</div>
 						</div>
 					</a>
 				))}
